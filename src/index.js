@@ -14,6 +14,7 @@ const client = new ApolloClient({
         {
           pokemon (name: "charmander") {
             name
+            types
             attacks {
                 fast {
                   name
@@ -28,15 +29,19 @@ const client = new ApolloClient({
       {({ loading, error, data }) => {
         if (loading) return <p>Loading...</p>;
         if (error) return <p>Error :(</p>;
-
-        console.log(data.pokemon);
   
         return (
           <div key={data.pokemon.name}>
-            <p>{data.pokemon.name}</p>
-            {data.pokemon.attacks.fast.map(attack => (
-              <p key={attack.name}>{attack.name}: type {attack.type}, damage {attack.damage}</p>
+            <p>Name: {data.pokemon.name}</p>
+            {data.pokemon.types.map(type => (
+              <p key={type}>Type: {type}</p>
             ))}
+            <p>Attacks:</p>
+            <ul>
+            {data.pokemon.attacks.fast.map(attack => (
+              <li key={attack.name}>{attack.name}: type {attack.type}, damage {attack.damage}</li>
+            ))}
+            </ul>
           </div>
         );
       }}
