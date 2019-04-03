@@ -5,28 +5,22 @@ import gql from "graphql-tag";
 import { ApolloProvider, Query } from "react-apollo";
 
 const client = new ApolloClient({
-  uri: "https://48p1r2roz4.sse.codesandbox.io"
+  uri: "https://graphql-pokemon.now.sh"
 });
 
-client
-  .query({
-    query: gql`
-      {
-        rates(currency: "USD") {
-          currency
-        }
-      }
-    `
-  })
-  .then(result => console.log(result));
-
-  const ExchangeRates = () => (
+  const Charmander = () => (
     <Query
       query={gql`
         {
-          rates(currency: "USD") {
-            currency
-            rate
+          pokemon (name: "charmander") {
+            name
+            attacks {
+                fast {
+                  name
+                  type
+                  damage
+                }
+              }
           }
         }
       `}
@@ -34,12 +28,17 @@ client
       {({ loading, error, data }) => {
         if (loading) return <p>Loading...</p>;
         if (error) return <p>Error :(</p>;
+
+        console.log(data.pokemon);
   
-        return data.rates.map(({ currency, rate }) => (
-          <div key={currency}>
-            <p>{currency}: {rate}</p>
+        return (
+          <div key={data.pokemon.name}>
+            <p>{data.pokemon.name}</p>
+            {data.pokemon.attacks.fast.map(attack => (
+              <p key={attack.name}>{attack.name}: type {attack.type}, damage {attack.damage}</p>
+            ))}
           </div>
-        ));
+        );
       }}
     </Query>
   );
@@ -47,8 +46,8 @@ client
   const App = () => (
     <ApolloProvider client={client}>
       <div>
-        <h2>My first Apollo app 🚀</h2>
-        <ExchangeRates />
+        <h2>Does it say Charmander?</h2>
+        <Charmander />
       </div>
     </ApolloProvider>
   );
