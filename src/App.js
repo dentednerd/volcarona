@@ -6,7 +6,8 @@ import Pokemon from './components/Pokemon';
 const App = () => (
   <ApolloProvider client={client}>
     <div>
-      <h2>PokeTypes</h2>
+      <h1>Volcarona</h1>
+      <h2>the Pokemon party strength rating app</h2>
       <Pokemon name="charmander"/>
       <Pokemon name="chimchar"/>
       <Pokemon name="volcarona"/>
