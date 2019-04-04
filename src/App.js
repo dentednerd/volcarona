@@ -7,7 +7,7 @@ const App = () => (
   <ApolloProvider client={client}>
     <div>
       <h2>Does it say Charmander?</h2>
-      <Charmander />
+      <Charmander name="charmander"/>
     </div>
   </ApolloProvider>
 );

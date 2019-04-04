@@ -1,18 +1,20 @@
 import { Query } from "react-apollo";
 import React from 'react';
-import { GET_CHARMANDER } from '../queries';
+import StrongAgainst from './StrongAgainst';
+import { GET_POKEMON } from '../queries';
 
-const Charmander = () => (
+const Charmander = ({ name }) => (
   <Query
-    query={GET_CHARMANDER}
+    query={GET_POKEMON}
+    variables={{ name }}
   >
     {({ loading, error, data }) => {
       if (loading) return <p>Loading...</p>;
       if (error) return <p>Error :(</p>;
 
-      const pokemon = data.getPokemon
-
-      console.log('SLOT 1', pokemon.types[0])
+      const pokemon = data.getPokemon;
+      const pokeType = data.getPokemon.types[0].type.name
+      console.log();
 
       return (
         <div key={pokemon.name}>
@@ -20,6 +22,7 @@ const Charmander = () => (
           {pokemon.types.map(type => (
             <p key={type.slot}>Type: {type.type.name}</p>
           ))}
+          <StrongAgainst pokeType={pokeType} />
         </div>
       );
     }}
