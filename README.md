@@ -1,12 +1,12 @@
-# Apollo Starter
+# Volcarona
 
-Following the Apollo docs.
+The Pokemon party strength rating app.
 
 ## Installation
 
 ```sh
-git clone https://github.com/dentednerd/apollo-starter.git
-cd apollo-starter
+git clone https://github.com/dentednerd/volcarona.git
+cd volcarona
 yarn
 ```
 
