@@ -10,18 +10,16 @@ const Charmander = () => (
       if (loading) return <p>Loading...</p>;
       if (error) return <p>Error :(</p>;
 
+      const pokemon = data.getPokemon
+
+      console.log('SLOT 1', pokemon.types[0])
+
       return (
-        <div key={data.pokemon.name}>
-          <p>Name: {data.pokemon.name}</p>
-          {data.pokemon.types.map(type => (
-            <p key={type}>Type: {type}</p>
+        <div key={pokemon.name}>
+          <p>Name: {pokemon.name}</p>
+          {pokemon.types.map(type => (
+            <p key={type.slot}>Type: {type.type.name}</p>
           ))}
-          <p>Attacks:</p>
-          <ul>
-          {data.pokemon.attacks.fast.map(attack => (
-            <li key={attack.name}>{attack.name}: type {attack.type}, damage {attack.damage}</li>
-          ))}
-          </ul>
         </div>
       );
     }}

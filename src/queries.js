@@ -2,18 +2,16 @@ import gql from "graphql-tag";
 
 const GET_CHARMANDER = gql`
 {
-  pokemon (name: "charmander") {
+  getPokemon (name: "charmander") {
     name
-    types
-    attacks {
-        fast {
-          name
-          type
-          damage
-        }
+    types {
+      slot
+      type {
+        name
       }
+    }
   }
 }
 `;
 
-export { GET_CHARMANDER};
+export { GET_CHARMANDER };
