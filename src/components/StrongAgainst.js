@@ -12,10 +12,12 @@ const StrongAgainst = ({ pokeType }) => (
         if (error) return <p>Error :( with {pokeType}</p>;
 
         const strongAgainst = data.getType.damage_relations.double_damage_to
+        const weakAgainst = data.getType.damage_relations.double_damage_from
 
         return (
           <div>
             <p>Strong against {strongAgainst.map(againstType => `${againstType.name}, `)}</p>
+            <p>Weak against {weakAgainst.map(againstType => `${againstType.name}, `)}</p>
           </div>
         );
       }}

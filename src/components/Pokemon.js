@@ -3,7 +3,7 @@ import React from 'react';
 import StrongAgainst from './StrongAgainst';
 import { GET_POKEMON } from '../queries';
 
-const Charmander = ({ name }) => (
+const Pokemon = ({ name }) => (
   <Query
     query={GET_POKEMON}
     variables={{ name }}
@@ -13,7 +13,6 @@ const Charmander = ({ name }) => (
       if (error) return <p>Error :(</p>;
 
       const pokemon = data.getPokemon;
-      const pokeType = data.getPokemon.types[0].type.name
       console.log();
 
       return (
@@ -22,11 +21,14 @@ const Charmander = ({ name }) => (
           {pokemon.types.map(type => (
             <p key={type.slot}>Type: {type.type.name}</p>
           ))}
-          <StrongAgainst pokeType={pokeType} />
+          {data.getPokemon.types.map(type => (
+            <StrongAgainst key={type.type.name} pokeType={type.type.name} />
+          ))}
+          
         </div>
       );
     }}
   </Query>
 );
 
-export default Charmander;
+export default Pokemon;

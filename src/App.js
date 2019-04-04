@@ -1,13 +1,15 @@
 import React from 'react';
 import { ApolloProvider } from "react-apollo";
 import client from './client';
-import Charmander from './components/Charmander';
+import Pokemon from './components/Pokemon';
 
 const App = () => (
   <ApolloProvider client={client}>
     <div>
-      <h2>Does it say Charmander?</h2>
-      <Charmander name="charmander"/>
+      <h2>PokeTypes</h2>
+      <Pokemon name="charmander"/>
+      <Pokemon name="chimchar"/>
+      <Pokemon name="volcarona"/>
     </div>
   </ApolloProvider>
 );
