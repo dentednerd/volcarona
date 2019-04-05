@@ -10,6 +10,9 @@ query Pokemon($name: String!) {
         name
       }
     }
+    sprites {
+      front_default
+    }
   }
 }
 `;

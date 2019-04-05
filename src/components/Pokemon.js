@@ -13,11 +13,12 @@ const Pokemon = ({ name }) => (
       if (error) return <p>Error :(</p>;
 
       const pokemon = data.getPokemon;
-      console.log();
+
+      if (!pokemon) return null;
 
       return (
-        <div key={pokemon.name}>
-          <p>Name: {pokemon.name}</p>
+        <div className={pokemon.name}>
+          <img src={pokemon.sprites.front_default} alt={pokemon.name} />
           {pokemon.types.map(type => (
             <p key={type.slot}>Type: {type.type.name}</p>
           ))}
