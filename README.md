@@ -1,6 +1,6 @@
 # Volcarona
 
-The Pokemon party strength rating app.
+![Volcarona](https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/637.png) The Pokemon party strength rating app. Requires [Larvesta](https://github.com/dentednerd/larvesta).
 
 ## Usage
 
