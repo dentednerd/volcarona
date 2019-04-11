@@ -13,6 +13,6 @@ app.use(mount('/graphql', graphqlHTTP({
   graphiql: true
 })))
 
-const PORT = process.env.PORT || 5636;
+const PORT = process.env.PORT || 5637;
 
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
