@@ -21,21 +21,6 @@ const GET_TYPE = gql`
 query Type($type: String) {
   getType (name: $type) {
     damage_relations {
-      no_damage_from {
-        name
-      }
-      half_damage_from {
-        name
-      }
-      double_damage_from {
-        name
-      }
-      no_damage_to {
-        name
-      }
-      half_damage_to {
-        name
-      }
       double_damage_to {
         name
       }
