@@ -1,105 +1,70 @@
-import React, { useState }  from 'react';
+import React  from 'react';
 import { ApolloProvider } from "react-apollo";
 import client from './client';
 import Pokemon from './components/Pokemon';
 import './App.css';
 
-function App() {
-  const [slot1, setSlot1] = useState('bulbasaur');
-  const [slot2, setSlot2] = useState('charmander');
-  const [slot3, setSlot3] = useState('squirtle');
-  const [slot4, setSlot4] = useState('chikorita');
-  const [slot5, setSlot5] = useState('cyndaquil');
-  const [slot6, setSlot6] = useState('totodile');
+class App extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      slot1: 'bulbasaur',
+      slot2: 'charmander',
+      slot3: 'squirtle',
+      slot4: 'chikorita',
+      slot5: 'cyndaquil',
+      slot6: 'totodile',
+      strengths: []
+    }
+    // this.updatePokemon = this.updatePokemon.bind(this);
+  }
 
-  return (
-    <ApolloProvider client={client}>
-      <div>
-        <h1>Volcarona</h1>
-        <h2>the Pokemon party strength rating app</h2>
-        <div className="partyPokemon">
-          <div>
-            <form>
-              <input
-                value={slot1}
-                onChange={e => setSlot1(e.target.value)}
-                placeholder="Pokemon #1"
-                type="text"
-                name="slot1"
-                required
-              />
-            </form>
-            <Pokemon name={slot1} />
-          </div>
-          <div>
-            <form>
-            <input
-              value={slot2}
-              onChange={e => setSlot2(e.target.value)}
-              placeholder="Pokemon #2"
-              type="text"
-              name="slot2"
-              required
-            />
-            </form>
-            <Pokemon name={slot2} />
-          </div>
-          <div>
-            <form>
-            <input
-              value={slot3}
-              onChange={e => setSlot3(e.target.value)}
-              placeholder="Pokemon #3"
-              type="text"
-              name="slot3"
-              required
-            />
-            </form>
-            <Pokemon name={slot3} />
-          </div>
-          <div>
-            <form>
-            <input
-              value={slot4}
-              onChange={e => setSlot4(e.target.value)}
-              placeholder="Pokemon #4"
-              type="text"
-              name="slot4"
-              required
-            />
-            </form>
-            <Pokemon name={slot4} />
-          </div>
-          <div>
-            <form>
-              <input
-                value={slot5}
-                onChange={e => setSlot5(e.target.value)}
-                placeholder="Pokemon #5"
-                type="text"
-                name="slot5"
-                required
-              />
-            </form>
-            <Pokemon name={slot5} />
-          </div>
-          <div>
-            <form>
-              <input
-                value={slot6}
-                onChange={e => setSlot6(e.target.value)}
-                placeholder="Pokemon #6"
-                type="text"
-                name="slot6"
-                required
-              />
-            </form>
-            <Pokemon name={slot6} />
+
+
+  // updatePokemon(slot, event) {
+  //   this.setState({
+  //     partyPokemon[slot]: {
+  //       ...this.state.partyPokemon,
+  //       state.partyPokemon[slot]: event.target.value
+  //     }
+  //   })
+  // }
+
+  render() {
+    const partyPokemon = [
+      this.state.slot1,
+      this.state.slot2,
+      this.state.slot3,
+      this.state.slot4,
+      this.state.slot5,
+      this.state.slot6,
+    ]
+    return (
+      <ApolloProvider client={client}>
+        <div className="volcarona">
+          <h1>Volcarona</h1>
+          <h2>the Pokemon party strength rating app</h2>
+          <div className="partyPokemon">
+            {partyPokemon.map(slot => (
+              <div key={slot}>
+                <form>
+                  <input
+                    value={slot}
+                    onChange={e => this.setState({ [slot]: e.target.value })}
+                    placeholder={`Pokemon ${slot}`}
+                    type="text"
+                    name={slot}
+                    required
+                  />
+                </form>
+                <Pokemon name={slot} />
+              </div>
+            ))}
           </div>
         </div>
-      </div>
-    </ApolloProvider>
-  );
+      </ApolloProvider>
+    );
+  }
 } 
 
 export default App;

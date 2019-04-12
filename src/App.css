@@ -1,6 +1,34 @@
+@import url('https://fonts.googleapis.com/css?family=Pangolin');
+@font-face {
+  font-family: 'Pokemon';
+  src: url('assets/Pokemon\ Solid.ttf')  format('truetype')
+}
+
+body {
+  font-family: Pangolin, cursive;
+  font-size: 16px;
+  background: rgb(34,193,195);
+  background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);
+  
+}
+
+.volcarona {
+  height: 100vh;
+  padding: 2em;
+  text-align: center;
+}
+
+h1 {
+  font-family: Pokemon, sans-serif;
+  color: white;
+  letter-spacing: 0.2em;
+}
+
 .partyPokemon {
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-around;
   align-items: flex-start;
+  text-align: left;
+  margin-top: 4em;
 }
