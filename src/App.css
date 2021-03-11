@@ -9,13 +9,15 @@ body {
   font-size: 16px;
   background: rgb(34,193,195);
   background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);
-  
+  background-attachment: fixed;
 }
 
-.volcarona {
-  height: 100vh;
+main {
+  min-height: 100vh;
   padding: 2em;
   text-align: center;
+  max-width: 25%;
+  margin: 0 auto;
 }
 
 h1 {

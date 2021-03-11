@@ -1,25 +1,40 @@
-import React from 'react';
-import { Query } from "react-apollo";
-import { GET_TYPE } from '../queries';
+import React, { useState, useEffect } from 'react';
+import TypeButton from './TypeButton';
+import allTypes from '../allTypes';
 
-const StrongAgainst = ({ pokeType }) => (
-    <Query
-      query={GET_TYPE}
-      variables={{ type: pokeType }}
-    >
-      {({ loading, error, data }) => {
-        if (loading) return <p>Loading...</p>;
-        if (error) return <p>Error :( with {pokeType}</p>;
+const StrongAgainst = ({ types }) => {
+  const [strengths, setStrengths] = useState([]);
+  const [weaknesses, setWeaknesses] = useState([]);
 
-        const strongAgainst = data.getType.damage_relations.double_damage_to
+  useEffect(() => {
+    const strongTypes = types.reduce((acc, type) => {
+      acc = acc.concat(allTypes[type].attackStrong);
+      return acc;
+    }, []);
+    setStrengths(strongTypes);
+    const weakTypes = types.reduce((acc, type) => {
+      acc = acc.concat(allTypes[type].defendWeak);
+      return acc;
+    }, []);
+    setWeaknesses(weakTypes);
+  }, [types]);
 
-        return (
-          <div>
-            <p>Strong against {strongAgainst.map(againstType => `${againstType.name}, `)}</p>
-          </div>
-        );
-      }}
-    </Query>
-);
+  return strengths && (
+    <>
+      <p>
+        Strong against
+        {strengths.map(strength => (
+          <TypeButton key={strength} thisType={strength} />
+        ))}
+      </p>
+        <p>
+        Weak against
+        {weaknesses.map(weakness => (
+          <TypeButton key={weakness} thisType={weakness} />
+        ))}
+      </p>
+    </>
+  );
+};
 
 export default StrongAgainst;

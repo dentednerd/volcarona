@@ -17,15 +17,4 @@ query Pokemon($name: String!) {
 }
 `;
 
-const GET_TYPE = gql`
-query Type($type: String) {
-  getType (name: $type) {
-    damage_relations {
-      double_damage_to {
-        name
-      }
-    }
-  }
-}
-`;
-export { GET_POKEMON, GET_TYPE };
+export { GET_POKEMON };

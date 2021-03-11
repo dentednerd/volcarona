@@ -17,10 +17,11 @@
     "react": "^16.8.6",
     "react-apollo": "^2.5.3",
     "react-dom": "^16.8.6",
-    "react-scripts": "2.1.8"
+    "react-scripts": "2.1.8",
+    "styled-components": "^5.2.1"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "PORT=5636 react-scripts start",
     "server": "nodemon server.js",
     "dev": "concurrently \"yarn start\" \"yarn server\"",
     "build": "react-scripts build",

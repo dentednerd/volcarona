@@ -1,68 +1,63 @@
-import React  from 'react';
+import React, { useState }  from 'react';
 import { ApolloProvider } from "react-apollo";
+import styled from 'styled-components';
 import client from './client';
 import Pokemon from './components/Pokemon';
 import './App.css';
 
-class App extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      slot1: 'bulbasaur',
-      slot2: 'charmander',
-      slot3: 'squirtle',
-      slot4: 'chikorita',
-      slot5: 'cyndaquil',
-      slot6: 'totodile',
-      strengths: []
-    }
-    // this.updatePokemon = this.updatePokemon.bind(this);
-  }
+const Party = styled('section')`
+  display: flex;
+  flex-flow: column nowrap;
+`;
 
-  // updatePokemon(slot, event) {
-  //   this.setState({
-  //     partyPokemon[slot]: {
-  //       ...this.state.partyPokemon,
-  //       state.partyPokemon[slot]: event.target.value
-  //     }
-  //   })
-  // }
+const App = () => {
+  const [slot0, setSlot0] = useState('bulbasaur');
+  const [slot1, setSlot1] = useState('charmander');
+  const [slot2, setSlot2] = useState('squirtle');
+  const [slot3, setSlot3] = useState('chikorita');
+  const [slot4, setSlot4] = useState('cyndaquil');
+  const [slot5, setSlot5] = useState('totodile');
 
-  render() {
-    const partyPokemon = [
-      this.state.slot1,
-      this.state.slot2,
-      this.state.slot3,
-      this.state.slot4,
-      this.state.slot5,
-      this.state.slot6,
-    ]
-    return (
-      <ApolloProvider client={client}>
-        <div className="volcarona">
-          <h1>Volcarona</h1>
-          <h2>the Pokemon party strength rating app</h2>
-          <div className="partyPokemon">
-            {partyPokemon.map(slot => (
-              <div key={slot}>
-                <form>
-                  <input
-                    value={slot}
-                    onChange={e => this.setState({ [slot]: e.target.value })}
-                    placeholder={`Pokemon ${slot}`}
-                    type="text"
-                    name={slot}
-                    required
-                  />
-                </form>
-                <Pokemon name={slot} />
-              </div>
-            ))}
-          </div>
-        </div>
-      </ApolloProvider>
-    );
-  }
-} 
+  const partyPokemon = [
+    {
+      name: slot0,
+      setState: setSlot0
+    },
+    {
+      name: slot1,
+      setState: setSlot1
+    },
+    {
+      name: slot2,
+      setState: setSlot2
+    },
+    {
+      name: slot3,
+      setState: setSlot3
+    },
+    {
+      name: slot4,
+      setState: setSlot4
+    },
+    {
+      name: slot5,
+      setState: setSlot5
+    },
+  ];
+
+  return (
+    <ApolloProvider client={client}>
+      <main>
+        <h1>Volcarona</h1>
+        <h2>the Pokemon party strength rating app</h2>
+        <Party>
+          {partyPokemon.map((slot, index) => (
+            <Pokemon key={slot.name}name={slot.name} setSlot={slot.setState} />
+          ))}
+        </Party>
+      </main>
+    </ApolloProvider>
+  );
+}
 
 export default App;
