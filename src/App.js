@@ -6,8 +6,9 @@ import Pokemon from './components/Pokemon';
 import './App.css';
 
 const Party = styled('section')`
-  display: flex;
-  flex-flow: column nowrap;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 2rem;
 `;
 
 const App = () => {

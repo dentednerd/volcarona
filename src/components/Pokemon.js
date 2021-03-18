@@ -13,6 +13,10 @@ const PokemonContainer = styled('div')`
   margin-bottom: 2rem;
   text-align: left;
   box-shadow: -0.5rem 0.5rem 0.5rem rgba(0,0,0,0.5);
+
+  form {
+    display: none;
+  }
 `;
 
 const Header = styled('header')`
